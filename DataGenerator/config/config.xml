@@ -1,0 +1,6 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<Config>
+	<input path="G:\cocos2dx\workspace\TF\trunk\res\excel"/>
+	<output path="G:\cocos2dx\workspace\TF\trunk\TF\Resources\staticdata" 
+		classPath="G:\cocos2dx\workspace\TF\trunk\TF\cocos2d\cocos\tables\tables"/>
+</Config>
