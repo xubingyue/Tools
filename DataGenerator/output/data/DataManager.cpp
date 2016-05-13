@@ -35,9 +35,8 @@ void DataManager::loadTable(const loadCallback& callback, std::string localConfi
 {
 	int count = 0;
 	Data data;
-	<#list messages as message>
-	LOAD_TABLE(m_${message.name}, tables::${message.name}, localConfig + "/" + tables::${message.name}::fileName(), callback, count);
-	</#list>
+		LOAD_TABLE(m_Role, tables::Role, localConfig + "/" + tables::Role::fileName(), callback, count);
+	LOAD_TABLE(m_Stage, tables::Stage, localConfig + "/" + tables::Stage::fileName(), callback, count);
 
 }
 
