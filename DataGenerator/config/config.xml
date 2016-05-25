@@ -1,0 +1,6 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<Config>
+	<input path="excel"/>
+	<output path="output/staticdata" 
+		classPath="output/core"/>
+</Config>
