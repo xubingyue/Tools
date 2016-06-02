@@ -91,6 +91,8 @@ public class PXDataGenerator {
 		
 		px.run();
 		
+		System.out.println("Run over.");
+		
 	}
 	
 	
