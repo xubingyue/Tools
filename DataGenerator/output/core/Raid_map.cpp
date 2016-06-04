@@ -1,10 +1,10 @@
-#include "Object.h"
+#include "Raid_map.h"
 
 #define KEY int2String(r->id)
 
 namespace tables
 {
-	Object::Object(unsigned const char* data, size_t size)
+	Raid_map::Raid_map(unsigned const char* data, size_t size)
 	{
 		InterDataCarrier carrier(data, size, fileName());
 		Error = carrier.Error;
@@ -15,23 +15,22 @@ namespace tables
 
 		for (size_t i = 0; i < carrier.GetRecordCount(); i++)
 		{
-			std::unique_ptr<Object_table> r(new Object_table);
+			std::unique_ptr<Raid_map_table> r(new Raid_map_table);
 			r->id = atoi(carrier.GetField(i, 0, "id").c_str());
-			r->name = carrier.GetField(i, 1, "name", true).c_str();
-			r->type = atoi(carrier.GetField(i, 2, "type").c_str());
-			r->value = atoi(carrier.GetField(i, 3, "value").c_str());
-			r->res = carrier.GetField(i, 4, "res", true).c_str();
+			r->map_name = carrier.GetField(i, 1, "map_name", true).c_str();
+			r->minLevel = atoi(carrier.GetField(i, 2, "minLevel").c_str());
+			r->maxLevel = atoi(carrier.GetField(i, 3, "maxLevel").c_str());
 
 			m_data[KEY] = std::move(r);
 		}
 	}
 
-	Object::~Object(void)
+	Raid_map::~Raid_map(void)
 	{
 
 	}
 
-	Object_table* Object::getObjectVo(int id)
+	Raid_map_table* Raid_map::getRaid_mapVo(int id)
 	{
 		auto it = m_data.find(int2String(id));
 		if (it == m_data.end())
@@ -42,7 +41,7 @@ namespace tables
 		}
 	}
 
-	std::string Object::int2String(int num)
+	std::string Raid_map::int2String(int num)
 	{
 		std::stringstream ss;
 		std::string str;
@@ -51,8 +50,8 @@ namespace tables
 		return str;
 	}
 
-	const char* Object::fileName()
+	const char* Raid_map::fileName()
 	{
-		return "Object.csv";
+		return "Raid_map.csv";
 	}
 }
