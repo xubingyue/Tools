@@ -181,7 +181,7 @@ public class FileGenerator {
 
 		String method = "getStringValue_json(rapidJsonData[i], \"data\");";
 
-		if ("std::string".equals(type)) {
+		if ("const char*".equals(type)) {
 			method = "carrier.GetField(i, " + index + ", \"" + name + "\", true).c_str();";
 		} else if ("int".equals(type)) {
 			method = "atoi(carrier.GetField(i, " + index + ", \"" + name + "\").c_str());";
@@ -192,7 +192,7 @@ public class FileGenerator {
 				throw new Exception();
 			} catch (Exception e) {
 				e.printStackTrace();
-				System.out.println("类型有问题！");
+				System.out.println("类型有问题！" + "[" + type + "]");
 				return "";
 			}
 		}

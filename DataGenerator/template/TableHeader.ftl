@@ -27,12 +27,12 @@ namespace tables
 	public:
 		${className}(unsigned const char* data, size_t size);
 		~${className}(void);
-		std::map<std::string, std::unique_ptr<${className}_table>> m_data;
+		std::map<const char*, std::unique_ptr<${className}_table>> m_data;
 		static const char* fileName();
 		std::string Error;
 		
 		${className}_table* get${className}Vo(${parameter});
-		std::string int2String(int num);
+		const char* int2String(int num);
 	};
 }
 

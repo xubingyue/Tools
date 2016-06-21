@@ -40,13 +40,13 @@ namespace tables
 		}
 	}
 
-	std::string ${className}::int2String(int num)
+	const char* ${className}::int2String(int num)
 	{
 		std::stringstream ss;
 		std::string str;
 		ss<<num;
 		ss>>str;
-		return str;
+		return str.c_str();
 	}
 
 	const char* ${className}::fileName()

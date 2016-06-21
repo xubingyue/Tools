@@ -216,7 +216,7 @@ public class ExcelUtil {
 		str = str.toLowerCase();
 		if ("string".equals(str))
 		{
-			return "std::string";
+			return "const char*";
 		} else if ("int".equals(str)) {
 			return "int";
 		} else if ("float".equals(str)) {
