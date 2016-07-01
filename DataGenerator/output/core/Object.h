@@ -13,20 +13,16 @@ namespace tables
 		//id
 		int id;
 		//名字
-		const char* name;
+		std::string name;
 		//类型
 		int type;
 		//值
 		int value;
 		//资源
-		const char* res;
+		std::string res;
 		Object_table()
 		{
-			memset(&id, 0, sizeof(id));
-			memset(&name, 0, sizeof(name));
-			memset(&type, 0, sizeof(type));
-			memset(&value, 0, sizeof(value));
-			memset(&res, 0, sizeof(res));
+			
 		}
 	};
 
@@ -35,12 +31,12 @@ namespace tables
 	public:
 		Object(unsigned const char* data, size_t size);
 		~Object(void);
-		std::map<const char*, std::unique_ptr<Object_table>> m_data;
+		std::map<std::string, Object_table> m_data;
 		static const char* fileName();
 		std::string Error;
 		
 		Object_table* getObjectVo(int id);
-		const char* int2String(int num);
+		std::string int2String(int num);
 	};
 }
 

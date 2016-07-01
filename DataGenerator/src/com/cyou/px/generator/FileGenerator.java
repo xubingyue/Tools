@@ -181,8 +181,8 @@ public class FileGenerator {
 
 		String method = "getStringValue_json(rapidJsonData[i], \"data\");";
 
-		if ("const char*".equals(type)) {
-			method = "carrier.GetField(i, " + index + ", \"" + name + "\", true).c_str();";
+		if ("std::string".equals(type)) {
+			method = "carrier.GetField(i, " + index + ", \"" + name + "\", true);";
 		} else if ("int".equals(type)) {
 			method = "atoi(carrier.GetField(i, " + index + ", \"" + name + "\").c_str());";
 		} else if ("float".equals(type)) {

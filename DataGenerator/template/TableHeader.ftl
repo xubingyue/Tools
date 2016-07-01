@@ -16,9 +16,7 @@ namespace tables
 		</#list>
 		${className}_table()
 		{
-			<#list messages as message>
-			memset(&${message.name}, 0, sizeof(${message.name}));
-			</#list>
+			
 		}
 	};
 
@@ -27,12 +25,12 @@ namespace tables
 	public:
 		${className}(unsigned const char* data, size_t size);
 		~${className}(void);
-		std::map<const char*, std::unique_ptr<${className}_table>> m_data;
+		std::map<std::string, ${className}_table> m_data;
 		static const char* fileName();
 		std::string Error;
 		
 		${className}_table* get${className}Vo(${parameter});
-		const char* int2String(int num);
+		std::string int2String(int num);
 	};
 }
 

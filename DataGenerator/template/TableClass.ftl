@@ -15,12 +15,12 @@ namespace tables
 
 		for (size_t i = 0; i < carrier.GetRecordCount(); i++)
 		{
-			std::unique_ptr<${className}_table> r(new ${className}_table);
+			${className}_table *r = new ${className}_table();
 			<#list messages as message>
 			r->${message.name} = ${message.method}
 			</#list>
 
-			m_data[KEY] = std::move(r);
+			m_data[KEY] = *r;
 		}
 	}
 
@@ -36,17 +36,17 @@ namespace tables
 		{
 			return nullptr;
 		} else {
-			return &(*(*it).second);
+			return &((*it).second);
 		}
 	}
 
-	const char* ${className}::int2String(int num)
+	std::string ${className}::int2String(int num)
 	{
 		std::stringstream ss;
 		std::string str;
 		ss<<num;
 		ss>>str;
-		return str.c_str();
+		return str;
 	}
 
 	const char* ${className}::fileName()

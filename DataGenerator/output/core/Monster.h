@@ -13,7 +13,7 @@ namespace tables
 		//id
 		int id;
 		//名字
-		const char* name;
+		std::string name;
 		//掉落id
 		int diropId;
 		//血量
@@ -23,7 +23,7 @@ namespace tables
 		//速度
 		float velocity;
 		//形象
-		const char* character_in;
+		std::string character_in;
 		//场景地图序号
 		int sceneID;
 		//玩家等级下限
@@ -36,18 +36,7 @@ namespace tables
 		int monsterPoint;
 		Monster_table()
 		{
-			memset(&id, 0, sizeof(id));
-			memset(&name, 0, sizeof(name));
-			memset(&diropId, 0, sizeof(diropId));
-			memset(&hp, 0, sizeof(hp));
-			memset(&attack, 0, sizeof(attack));
-			memset(&velocity, 0, sizeof(velocity));
-			memset(&character_in, 0, sizeof(character_in));
-			memset(&sceneID, 0, sizeof(sceneID));
-			memset(&minLevel, 0, sizeof(minLevel));
-			memset(&maxLevel, 0, sizeof(maxLevel));
-			memset(&raidID, 0, sizeof(raidID));
-			memset(&monsterPoint, 0, sizeof(monsterPoint));
+			
 		}
 	};
 
@@ -56,12 +45,12 @@ namespace tables
 	public:
 		Monster(unsigned const char* data, size_t size);
 		~Monster(void);
-		std::map<const char*, std::unique_ptr<Monster_table>> m_data;
+		std::map<std::string, Monster_table> m_data;
 		static const char* fileName();
 		std::string Error;
 		
 		Monster_table* getMonsterVo(int id);
-		const char* int2String(int num);
+		std::string int2String(int num);
 	};
 }
 

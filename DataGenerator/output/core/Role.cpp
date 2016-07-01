@@ -15,13 +15,13 @@ namespace tables
 
 		for (size_t i = 0; i < carrier.GetRecordCount(); i++)
 		{
-			std::unique_ptr<Role_table> r(new Role_table);
+			Role_table *r = new Role_table();
 			r->id = atoi(carrier.GetField(i, 0, "id").c_str());
-			r->name = carrier.GetField(i, 1, "name", true).c_str();
+			r->name = carrier.GetField(i, 1, "name", true);
 			r->hp = atoi(carrier.GetField(i, 2, "hp").c_str());
 			r->attack = atoi(carrier.GetField(i, 3, "attack").c_str());
 			r->velocity = atof(carrier.GetField(i, 4, "velocity").c_str());
-			r->character_in = carrier.GetField(i, 5, "character_in", true).c_str();
+			r->character_in = carrier.GetField(i, 5, "character_in", true);
 			r->ski1 = atoi(carrier.GetField(i, 6, "ski1").c_str());
 			r->darkAttack = atoi(carrier.GetField(i, 7, "darkAttack").c_str());
 			r->darkResist = atoi(carrier.GetField(i, 8, "darkResist").c_str());
@@ -34,7 +34,7 @@ namespace tables
 			r->recover = atoi(carrier.GetField(i, 15, "recover").c_str());
 			r->absorb = atoi(carrier.GetField(i, 16, "absorb").c_str());
 
-			m_data[KEY] = std::move(r);
+			m_data[KEY] = *r;
 		}
 	}
 
@@ -50,17 +50,17 @@ namespace tables
 		{
 			return nullptr;
 		} else {
-			return &(*(*it).second);
+			return &((*it).second);
 		}
 	}
 
-	const char* Role::int2String(int num)
+	std::string Role::int2String(int num)
 	{
 		std::stringstream ss;
 		std::string str;
 		ss<<num;
 		ss>>str;
-		return str.c_str();
+		return str;
 	}
 
 	const char* Role::fileName()

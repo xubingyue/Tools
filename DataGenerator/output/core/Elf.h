@@ -13,7 +13,7 @@ namespace tables
 		//id
 		int id;
 		//名字
-		const char* name;
+		std::string name;
 		//血量
 		int hp;
 		//攻击力
@@ -21,15 +21,10 @@ namespace tables
 		//速度
 		float velocity;
 		//形象
-		const char* character_in;
+		std::string character_in;
 		Elf_table()
 		{
-			memset(&id, 0, sizeof(id));
-			memset(&name, 0, sizeof(name));
-			memset(&hp, 0, sizeof(hp));
-			memset(&attack, 0, sizeof(attack));
-			memset(&velocity, 0, sizeof(velocity));
-			memset(&character_in, 0, sizeof(character_in));
+			
 		}
 	};
 
@@ -38,12 +33,12 @@ namespace tables
 	public:
 		Elf(unsigned const char* data, size_t size);
 		~Elf(void);
-		std::map<const char*, std::unique_ptr<Elf_table>> m_data;
+		std::map<std::string, Elf_table> m_data;
 		static const char* fileName();
 		std::string Error;
 		
 		Elf_table* getElfVo(int id);
-		const char* int2String(int num);
+		std::string int2String(int num);
 	};
 }
 

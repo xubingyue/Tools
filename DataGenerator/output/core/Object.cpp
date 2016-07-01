@@ -15,14 +15,14 @@ namespace tables
 
 		for (size_t i = 0; i < carrier.GetRecordCount(); i++)
 		{
-			std::unique_ptr<Object_table> r(new Object_table);
+			Object_table *r = new Object_table();
 			r->id = atoi(carrier.GetField(i, 0, "id").c_str());
-			r->name = carrier.GetField(i, 1, "name", true).c_str();
+			r->name = carrier.GetField(i, 1, "name", true);
 			r->type = atoi(carrier.GetField(i, 2, "type").c_str());
 			r->value = atoi(carrier.GetField(i, 3, "value").c_str());
-			r->res = carrier.GetField(i, 4, "res", true).c_str();
+			r->res = carrier.GetField(i, 4, "res", true);
 
-			m_data[KEY] = std::move(r);
+			m_data[KEY] = *r;
 		}
 	}
 
@@ -38,17 +38,17 @@ namespace tables
 		{
 			return nullptr;
 		} else {
-			return &(*(*it).second);
+			return &((*it).second);
 		}
 	}
 
-	const char* Object::int2String(int num)
+	std::string Object::int2String(int num)
 	{
 		std::stringstream ss;
 		std::string str;
 		ss<<num;
 		ss>>str;
-		return str.c_str();
+		return str;
 	}
 
 	const char* Object::fileName()

@@ -15,7 +15,7 @@ namespace tables
 
 		for (size_t i = 0; i < carrier.GetRecordCount(); i++)
 		{
-			std::unique_ptr<Drop_table> r(new Drop_table);
+			Drop_table *r = new Drop_table();
 			r->id = atoi(carrier.GetField(i, 0, "id").c_str());
 			r->num = atoi(carrier.GetField(i, 1, "num").c_str());
 			r->dropID0 = atoi(carrier.GetField(i, 2, "dropID0").c_str());
@@ -27,7 +27,7 @@ namespace tables
 			r->dropID3 = atoi(carrier.GetField(i, 8, "dropID3").c_str());
 			r->weight3 = atof(carrier.GetField(i, 9, "weight3").c_str());
 
-			m_data[KEY] = std::move(r);
+			m_data[KEY] = *r;
 		}
 	}
 
@@ -43,17 +43,17 @@ namespace tables
 		{
 			return nullptr;
 		} else {
-			return &(*(*it).second);
+			return &((*it).second);
 		}
 	}
 
-	const char* Drop::int2String(int num)
+	std::string Drop::int2String(int num)
 	{
 		std::stringstream ss;
 		std::string str;
 		ss<<num;
 		ss>>str;
-		return str.c_str();
+		return str;
 	}
 
 	const char* Drop::fileName()

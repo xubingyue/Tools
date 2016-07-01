@@ -15,12 +15,12 @@ namespace tables
 
 		for (size_t i = 0; i < carrier.GetRecordCount(); i++)
 		{
-			std::unique_ptr<Language_table> r(new Language_table);
+			Language_table *r = new Language_table();
 			r->id = atoi(carrier.GetField(i, 0, "id").c_str());
-			r->zh_txt = carrier.GetField(i, 1, "zh_txt", true).c_str();
-			r->en_txt = carrier.GetField(i, 2, "en_txt", true).c_str();
+			r->zh_txt = carrier.GetField(i, 1, "zh_txt", true);
+			r->en_txt = carrier.GetField(i, 2, "en_txt", true);
 
-			m_data[KEY] = std::move(r);
+			m_data[KEY] = *r;
 		}
 	}
 
@@ -36,17 +36,17 @@ namespace tables
 		{
 			return nullptr;
 		} else {
-			return &(*(*it).second);
+			return &((*it).second);
 		}
 	}
 
-	const char* Language::int2String(int num)
+	std::string Language::int2String(int num)
 	{
 		std::stringstream ss;
 		std::string str;
 		ss<<num;
 		ss>>str;
-		return str.c_str();
+		return str;
 	}
 
 	const char* Language::fileName()
